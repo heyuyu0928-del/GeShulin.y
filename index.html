@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-theme="light" data-color-theme="black-white">
+<style>
+    /* 强制显示折叠面板，让视频按钮永远可见 */
+    #collapsed-extras-panel {
+        display: block !important;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -2235,7 +2241,5 @@
     <script src="onboarding.js"></script> 
     <script src="listeners.js"></script>
     <script src="app.js"></script>       
-<button class="collapsed-extra-btn" id="collapsed-call-btn" title="视频通话" onclick="(function(){document.getElementById('collapsed-extras-panel').style.display='none';document.getElementById('collapse-expand-btn').classList.remove('open');if(window.callFeature&&typeof window.callFeature.startCall==='function')window.callFeature.startCall(false);})();">
-                        <i class="fas fa-video"></i>
 </body>
 </html>
