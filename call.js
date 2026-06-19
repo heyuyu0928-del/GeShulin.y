@@ -479,22 +479,24 @@ html:not([data-theme="dark"])[data-color-theme="black-white"] .message-sent{
     }
 
     function injectToolbarBtn() {
-        if (document.getElementById('call-toolbar-btn')) return;
-        const anchor = document.getElementById('attachment-btn');
-        if (!anchor) return;
-        const btn = document.createElement('button');
-        btn.id = 'call-toolbar-btn';
-        btn.title = '视频通话';
-        btn.className = 'input-btn collapse-hideable';
-        btn.style.display = S.enabled ? '' : 'none';
-        btn.innerHTML = '<i class="fas fa-video"></i>';
-        btn.addEventListener('click', () => {
-            if (!S.enabled) return;
-            if (S.active) { restoreWindow(); return; }
-            startCall(false);
-        });
-        anchor.parentNode.insertBefore(btn, anchor);
-    }
+    if (document.getElementById('call-toolbar-btn')) return;
+    const anchor = document.getElementById('attachment-btn') 
+                || document.querySelector('.input-btn')
+                || document.querySelector('footer button');
+    if (!anchor) { setTimeout(injectToolbarBtn, 300); return; }
+    const btn = document.createElement('button');
+    btn.id = 'call-toolbar-btn';
+    btn.title = '视频通话';
+    btn.className = 'input-btn collapse-hideable';
+    btn.style.display = S.enabled ? '' : 'none';
+    btn.innerHTML = '<i class="fas fa-video"></i>';
+    btn.addEventListener('click', () => {
+        if (!S.enabled) return;
+        if (S.active) { restoreWindow(); return; }
+        startCall(false);
+    });
+    anchor.parentNode.insertBefore(btn, anchor);
+}
 
     function fmt(ms) {
         const s = Math.floor(ms / 1000), m = Math.floor(s / 60), h = Math.floor(m / 60);
