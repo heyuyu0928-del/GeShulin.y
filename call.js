@@ -480,10 +480,14 @@ html:not([data-theme="dark"])[data-color-theme="black-white"] .message-sent{
 
     function injectToolbarBtn() {
     if (document.getElementById('call-toolbar-btn')) return;
-    const anchor = document.getElementById('attachment-btn') 
-                || document.querySelector('.input-btn')
-                || document.querySelector('footer button');
-    if (!anchor) { setTimeout(injectToolbarBtn, 300); return; }
+    // 先尝试找底部输入栏
+    const bar = document.querySelector('.input-bar') 
+             || document.querySelector('.chat-input')
+             || document.querySelector('footer');
+    if (!bar) {
+        setTimeout(injectToolbarBtn, 300);
+        return;
+    }
     const btn = document.createElement('button');
     btn.id = 'call-toolbar-btn';
     btn.title = '视频通话';
@@ -492,11 +496,12 @@ html:not([data-theme="dark"])[data-color-theme="black-white"] .message-sent{
     btn.innerHTML = '<i class="fas fa-video"></i>';
     btn.addEventListener('click', () => {
         if (!S.enabled) return;
-        if (S.active) { restoreWindow(); return; }
-        startCall(false);
+        S.active ? restoreWindow() : startCall(false);
     });
-    anchor.parentNode.insertBefore(btn, anchor);
+    // 直接插到输入栏最前面
+    bar.insertBefore(btn, bar.firstChild);
 }
+
 
     function fmt(ms) {
         const s = Math.floor(ms / 1000), m = Math.floor(s / 60), h = Math.floor(m / 60);
