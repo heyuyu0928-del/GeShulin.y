@@ -2235,6 +2235,11 @@
     <script src="onboarding.js"></script> 
     <script src="listeners.js"></script>
     <script src="app.js"></script>
+        
+        <button id="call-trigger-btn" class="btn" onclick="window.callInterface && window.callInterface.open()">
+    <i class="fas fa-phone"></i> 通话
+        </button>
+        
         <!-- call.js 所需容器 -->
 <div id="call-window" style="display:none;">
     <div id="call-window-body"></div>
@@ -2248,5 +2253,6 @@
 <button id="call-inaccessible-btn" style="display:none;">
     <i></i>
 </button>
+        
 </body>
 </html>
