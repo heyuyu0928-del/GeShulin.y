@@ -2241,5 +2241,9 @@
     <script src="onboarding.js"></script> 
     <script src="listeners.js"></script>
     <script src="app.js"></script>       
+
+        <button class="collapsed-extra-btn" id="collapsed-call-btn" title="视频通话" style="position:fixed; bottom:100px; right:20px; z-index:999999;" onclick="if(window.callFeature && typeof window.callFeature.startCall === 'function') { window.callFeature.startCall(false); } else { alert('callFeature未加载，请检查call.js是否存在'); }">
+    <i class="fas fa-video"></i>
+</button>
 </body>
 </html>
