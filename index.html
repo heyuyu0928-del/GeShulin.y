@@ -2234,25 +2234,8 @@
     <script src="data.js"></script>
     <script src="onboarding.js"></script> 
     <script src="listeners.js"></script>
-    <script src="app.js"></script>
-        
-        <button id="call-trigger-btn" class="btn" onclick="window.callInterface && window.callInterface.open()">
-    <i class="fas fa-phone"></i> 通话
-        </button>
-        
-        <!-- call.js 所需容器 -->
-<div id="call-window" style="display:none;">
-    <div id="call-window-body"></div>
-    <div id="call-incoming-state"></div>
-</div>
-<div id="call-incoming-overlay" style="display:none;">
-    <div id="call-inc-avatar"></div>
-    <span id="call-inc-name"></span>
-</div>
-<div id="call-mini-pill" style="display:none;"></div>
-<button id="call-inaccessible-btn" style="display:none;">
-    <i></i>
-</button>
-        
+    <script src="app.js"></script>       
+<button class="collapsed-extra-btn" id="collapsed-call-btn" title="视频通话" onclick="(function(){document.getElementById('collapsed-extras-panel').style.display='none';document.getElementById('collapse-expand-btn').classList.remove('open');if(window.callFeature&&typeof window.callFeature.startCall==='function')window.callFeature.startCall(false);})();">
+                        <i class="fas fa-video"></i>
 </body>
 </html>
